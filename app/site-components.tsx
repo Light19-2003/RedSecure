@@ -36,6 +36,7 @@ import {
   SiteHeader,
   ValueStrip,
 } from "./interactive";
+import { HrmsFeaturesContent } from "./hrms-features";
 
 export function PageHero({
   title,
@@ -148,7 +149,14 @@ export function HomeProductGrid() {
                 className={index === 0 ? "product-featured" : ""}
                 delay={(index % 3) * 80}
               >
-                <a className="home-product-card" href="#">
+                <a
+                  className="home-product-card"
+                  href={
+                    product.title === "RS-HRMS"
+                      ? "/hrms-features.html"
+                      : "/project.html"
+                  }
+                >
                   <img src={product.image} alt={product.title} loading="lazy" />
                   <span className="product-overlay" />
                   <span className="product-card-content">
@@ -209,6 +217,12 @@ export function ProductsList() {
                     </span>
                     <h2>{product.title}</h2>
                     <p>{product.description}</p>
+                    {product.title === "RS-HRMS" && (
+                      <a className="product-details-link" href="/hrms-features.html">
+                        View HRMS Features
+                        <ArrowRight aria-hidden="true" />
+                      </a>
+                    )}
                   </div>
                 </article>
               </Reveal>
@@ -738,6 +752,17 @@ export function ProductsPage() {
       <div id="top" />
       <PageHero title="Products" active="products" />
       <ProductsList />
+      <SiteFooter />
+    </>
+  );
+}
+
+export function HrmsFeaturesPage() {
+  return (
+    <>
+      <div id="top" />
+      <SiteHeader active="products" internal />
+      <HrmsFeaturesContent />
       <SiteFooter />
     </>
   );

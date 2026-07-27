@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about.html",
     "/service.html",
     "/project.html",
+    "/hrms-features.html",
     "/contact.html",
     "/blog.html",
     "/team.html",

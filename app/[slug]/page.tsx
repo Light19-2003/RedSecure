@@ -4,6 +4,7 @@ import {
   AboutPage,
   ContactPage,
   HomePage,
+  HrmsFeaturesPage,
   Legacy404Page,
   LegacyBlogPage,
   LegacyTeamPage,
@@ -13,6 +14,7 @@ import {
 } from "../site-components";
 
 const pageTitles: Record<string, string> = {
+  "hrms-features.html": "HRMS Features - RedSecure",
   "index.html": "RedSecure — IT Solutions",
   "about.html": "About Us — RedSecure",
   "service.html": "Services — RedSecure",
@@ -55,6 +57,8 @@ export default async function LegacyRoute({
       return <ServicesPage />;
     case "project.html":
       return <ProductsPage />;
+    case "hrms-features.html":
+      return <HrmsFeaturesPage />;
     case "contact.html":
       return <ContactPage />;
     case "blog.html":

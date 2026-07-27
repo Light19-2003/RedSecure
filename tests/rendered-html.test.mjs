@@ -44,6 +44,7 @@ test("preserves the original html routes", async () => {
     ["/about.html", "About Us"],
     ["/service.html", "Services"],
     ["/project.html", "Products"],
+    ["/hrms-features.html", "HRMS Features"],
     ["/contact.html", "Contact Us"],
     ["/blog.html", "Latest Blog &amp; News"],
     ["/team.html", "Meet our expert Team"],
