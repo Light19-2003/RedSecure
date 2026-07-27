@@ -273,13 +273,60 @@ const heroSlides = [
   },
 ];
 
+const dashboardProducts = [
+  {
+    title: "RS-CMS",
+    value: "Connected Care",
+    status: "Security",
+    bars: [36, 62, 48, 82, 68, 92, 76],
+  },
+  {
+    title: "RS-HRMS",
+    value: "People Operations",
+    status: "Innovation",
+    bars: [48, 72, 57, 88, 64, 81, 94],
+  },
+  {
+    title: "FixaTrack",
+    value: "Live Asset Tracking",
+    status: "Reliability",
+    bars: [68, 45, 79, 56, 91, 73, 86],
+  },
+  {
+    title: "Accounting Application",
+    value: "Financial Clarity",
+    status: "Accuracy",
+    bars: [42, 58, 74, 63, 84, 78, 96],
+  },
+  {
+    title: "Document Management System",
+    value: "Secure Workflows",
+    status: "Control",
+    bars: [55, 69, 51, 77, 88, 71, 91],
+  },
+];
+
 export function HeroCarousel() {
   const [active, setActive] = useState(0);
+  const [activeProduct, setActiveProduct] = useState(0);
 
   useEffect(() => {
     const timer = window.setInterval(
       () => setActive((current) => (current + 1) % heroSlides.length),
       7000,
+    );
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = window.setInterval(
+      () =>
+        setActiveProduct(
+          (current) => (current + 1) % dashboardProducts.length,
+        ),
+      3400,
     );
     return () => window.clearInterval(timer);
   }, []);
@@ -290,6 +337,13 @@ export function HeroCarousel() {
     );
   const next = () =>
     setActive((current) => (current + 1) % heroSlides.length);
+  const currentProduct = dashboardProducts[activeProduct];
+  const nextProduct =
+    dashboardProducts[(activeProduct + 1) % dashboardProducts.length];
+  const followingProduct =
+    dashboardProducts[(activeProduct + 2) % dashboardProducts.length];
+  const floatingProduct =
+    dashboardProducts[(activeProduct + 3) % dashboardProducts.length];
 
   return (
     <section className="hero" aria-roledescription="carousel">
@@ -344,43 +398,55 @@ export function HeroCarousel() {
             <ShieldCheck aria-hidden="true" size={17} />
           </div>
           <div className="dashboard-body">
-            <div className="dashboard-sidebar">
-              <span className="active" />
-              <span />
-              <span />
-              <span />
+            <div className="dashboard-sidebar" aria-label="Select a product">
+              {dashboardProducts.map((product, index) => (
+                <button
+                  key={product.title}
+                  type="button"
+                  className={activeProduct === index ? "active" : ""}
+                  aria-label={`Show ${product.title}`}
+                  aria-pressed={activeProduct === index}
+                  onClick={() => setActiveProduct(index)}
+                />
+              ))}
             </div>
-            <div className="dashboard-main">
+            <div className="dashboard-main" key={currentProduct.title}>
               <div className="dashboard-heading">
                 <div>
                   <small>Our Products</small>
-                  <strong>RS-CMS</strong>
+                  <strong
+                    className={
+                      currentProduct.title.length > 22 ? "is-long" : ""
+                    }
+                  >
+                    {currentProduct.title}
+                  </strong>
                 </div>
-                <span className="status-dot">Security</span>
+                <span className="status-dot">{currentProduct.status}</span>
               </div>
               <div className="metric-grid">
                 <div>
-                  <small>RS-HRMS</small>
-                  <strong>Innovation</strong>
+                  <small>{nextProduct.title}</small>
+                  <strong>{nextProduct.value}</strong>
                   <i className="metric-line" />
                 </div>
                 <div>
-                  <small>FixaTrack</small>
-                  <strong>Reliability</strong>
+                  <small>{followingProduct.title}</small>
+                  <strong>{followingProduct.value}</strong>
                   <i className="metric-line short" />
                 </div>
               </div>
               <div className="chart-card">
                 <div className="chart-bars" aria-hidden="true">
-                  {[36, 62, 48, 82, 68, 92, 76].map((height, index) => (
+                  {currentProduct.bars.map((height, index) => (
                     <i key={index} style={{ height: `${height}%` }} />
                   ))}
                 </div>
                 <div className="floating-system-card">
                   <CheckCircle2 aria-hidden="true" />
                   <span>
-                    <small>Document Management System</small>
-                    <strong>Accounting Application</strong>
+                    <small>{floatingProduct.title}</small>
+                    <strong>{floatingProduct.value}</strong>
                   </span>
                 </div>
               </div>
