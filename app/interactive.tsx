@@ -337,13 +337,6 @@ export function HeroCarousel() {
     );
   const next = () =>
     setActive((current) => (current + 1) % heroSlides.length);
-  const currentProduct = dashboardProducts[activeProduct];
-  const nextProduct =
-    dashboardProducts[(activeProduct + 1) % dashboardProducts.length];
-  const followingProduct =
-    dashboardProducts[(activeProduct + 2) % dashboardProducts.length];
-  const floatingProduct =
-    dashboardProducts[(activeProduct + 3) % dashboardProducts.length];
 
   return (
     <section className="hero" aria-roledescription="carousel">
@@ -410,46 +403,69 @@ export function HeroCarousel() {
                 />
               ))}
             </div>
-            <div className="dashboard-main" key={currentProduct.title}>
-              <div className="dashboard-heading">
-                <div>
-                  <small>Our Products</small>
-                  <strong
-                    className={
-                      currentProduct.title.length > 22 ? "is-long" : ""
-                    }
+            <div className="dashboard-main">
+              {dashboardProducts.map((product, productIndex) => {
+                const nextProduct =
+                  dashboardProducts[
+                    (productIndex + 1) % dashboardProducts.length
+                  ];
+                const followingProduct =
+                  dashboardProducts[
+                    (productIndex + 2) % dashboardProducts.length
+                  ];
+                const floatingProduct =
+                  dashboardProducts[
+                    (productIndex + 3) % dashboardProducts.length
+                  ];
+
+                return (
+                  <div
+                    className={`dashboard-product-panel ${
+                      activeProduct === productIndex ? "is-active" : ""
+                    }`}
+                    key={product.title}
+                    aria-hidden={activeProduct !== productIndex}
                   >
-                    {currentProduct.title}
-                  </strong>
-                </div>
-                <span className="status-dot">{currentProduct.status}</span>
-              </div>
-              <div className="metric-grid">
-                <div>
-                  <small>{nextProduct.title}</small>
-                  <strong>{nextProduct.value}</strong>
-                  <i className="metric-line" />
-                </div>
-                <div>
-                  <small>{followingProduct.title}</small>
-                  <strong>{followingProduct.value}</strong>
-                  <i className="metric-line short" />
-                </div>
-              </div>
-              <div className="chart-card">
-                <div className="chart-bars" aria-hidden="true">
-                  {currentProduct.bars.map((height, index) => (
-                    <i key={index} style={{ height: `${height}%` }} />
-                  ))}
-                </div>
-                <div className="floating-system-card">
-                  <CheckCircle2 aria-hidden="true" />
-                  <span>
-                    <small>{floatingProduct.title}</small>
-                    <strong>{floatingProduct.value}</strong>
-                  </span>
-                </div>
-              </div>
+                    <div className="dashboard-heading">
+                      <div>
+                        <small>Our Products</small>
+                        <strong
+                          className={product.title.length > 22 ? "is-long" : ""}
+                        >
+                          {product.title}
+                        </strong>
+                      </div>
+                      <span className="status-dot">{product.status}</span>
+                    </div>
+                    <div className="metric-grid">
+                      <div>
+                        <small>{nextProduct.title}</small>
+                        <strong>{nextProduct.value}</strong>
+                        <i className="metric-line" />
+                      </div>
+                      <div>
+                        <small>{followingProduct.title}</small>
+                        <strong>{followingProduct.value}</strong>
+                        <i className="metric-line short" />
+                      </div>
+                    </div>
+                    <div className="chart-card">
+                      <div className="chart-bars" aria-hidden="true">
+                        {product.bars.map((height, index) => (
+                          <i key={index} style={{ height: `${height}%` }} />
+                        ))}
+                      </div>
+                      <div className="floating-system-card">
+                        <CheckCircle2 aria-hidden="true" />
+                        <span>
+                          <small>{floatingProduct.title}</small>
+                          <strong>{floatingProduct.value}</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

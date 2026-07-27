@@ -805,20 +805,32 @@ img {
 }
 
 .dashboard-main {
+  position: relative;
   min-width: 0;
-  padding: 27px;
-  animation: dashboard-swap-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  min-height: 390px;
 }
 
-@keyframes dashboard-swap-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.dashboard-product-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  padding: 27px;
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(2px);
+  transform: translateY(12px) scale(0.992);
+  transition:
+    opacity 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.48s ease;
+}
+
+.dashboard-product-panel.is-active {
+  z-index: 1;
+  opacity: 1;
+  pointer-events: auto;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
 }
 
 .dashboard-heading {
@@ -2585,7 +2597,7 @@ img {
     grid-template-columns: 44px 1fr;
   }
 
-  .dashboard-main {
+  .dashboard-product-panel {
     padding: 18px;
   }
 
@@ -4161,8 +4173,8 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dashboard-main {
-    animation: none;
+  .dashboard-product-panel {
+    transition: none;
   }
 
   .hrms-dashboard-chart > div i,
