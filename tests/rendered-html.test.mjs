@@ -33,6 +33,8 @@ test("server-renders the finished RedSecure home page", async () => {
   assert.match(html, /Bespoke services for you/);
   assert.match(html, /Contact for any query/);
   assert.match(html, /RS-CMS/);
+  assert.match(html, /Loading RedSecure website/);
+  assert.match(html, /first-visit-loader/);
   assert.doesNotMatch(html, /codex-preview/);
   assert.doesNotMatch(html, /react-loading-skeleton/);
 });

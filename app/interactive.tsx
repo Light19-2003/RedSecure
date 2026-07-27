@@ -16,6 +16,79 @@ import {
 } from "lucide-react";
 import { contact } from "./data";
 
+const FIRST_VISIT_KEY = "redsecure-first-visit-loader-v1";
+
+export function FirstVisitLoader() {
+  const [visible, setVisible] = useState(true);
+  const [leaving, setLeaving] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem(FIRST_VISIT_KEY)) {
+        setVisible(false);
+        return;
+      }
+    } catch {
+      // Storage can be unavailable in strict privacy modes; the loader still works.
+    }
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const leaveTimer = window.setTimeout(
+      () => setLeaving(true),
+      reducedMotion ? 250 : 1750,
+    );
+    const removeTimer = window.setTimeout(
+      () => {
+        try {
+          window.localStorage.setItem(FIRST_VISIT_KEY, "seen");
+        } catch {
+          // A blocked storage write should not prevent access to the website.
+        }
+        document.body.style.overflow = previousOverflow;
+        setVisible(false);
+      },
+      reducedMotion ? 400 : 2300,
+    );
+
+    return () => {
+      window.clearTimeout(leaveTimer);
+      window.clearTimeout(removeTimer);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div
+      className={`first-visit-loader ${leaving ? "is-leaving" : ""}`}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading RedSecure website"
+    >
+      <div className="loader-grid" aria-hidden="true" />
+      <div className="loader-glow" aria-hidden="true" />
+      <div className="loader-content">
+        <div className="loader-mark">
+          <span className="loader-orbit" aria-hidden="true" />
+          <span className="loader-orbit loader-orbit-secondary" aria-hidden="true" />
+          <img src="/redsecure/brand/6.png" alt="" />
+        </div>
+        <strong>RedSecure</strong>
+        <span className="loader-status">Loading</span>
+        <span className="loader-progress" aria-hidden="true">
+          <i />
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function Reveal({
   children,
   className = "",
