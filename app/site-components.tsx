@@ -444,8 +444,8 @@ export function SiteFooter() {
           <span>Redsecure , All rights reserved.</span>
           <span>
             Designed By{" "}
-            <a href="https://htmlcodex.com" target="_blank">
-              HTML Codex
+            <a href="/index.html">
+              RedSecure
             </a>
           </span>
         </div>
@@ -519,8 +519,8 @@ export function LegacyFooter() {
           <span>Your Site Name , All right reserved.</span>
           <span>
             Designed By{" "}
-            <a href="https://htmlcodex.com" target="_blank">
-              HTML Codex
+            <a href="/index.html">
+              RedSecure
             </a>
           </span>
         </div>
