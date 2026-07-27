@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  Building2,
   CalendarDays,
   Check,
   ChevronRight,
@@ -16,6 +15,7 @@ import {
   Share2,
   Twitter,
 } from "lucide-react";
+import Link from "next/link";
 import {
   aboutParagraphs,
   contact,
@@ -61,7 +61,7 @@ export function PageHero({
             <h1>{title}</h1>
             {legacy && (
               <nav className="breadcrumbs" aria-label="Breadcrumb">
-                <a href="/index.html">Home</a>
+                <Link href="/index.html">Home</Link>
                 <ChevronRight aria-hidden="true" />
                 <a href="#">Pages</a>
                 <ChevronRight aria-hidden="true" />
@@ -397,9 +397,9 @@ export function SiteFooter() {
         <div className="footer-grid-lines" aria-hidden="true" />
         <div className="shell footer-main">
           <div className="footer-brand-column">
-            <a className="footer-brand" href="/index.html">
+            <Link className="footer-brand" href="/index.html">
               <img src="/redsecure/brand/RedSecureLogoWhite.png" alt="" />
-            </a>
+            </Link>
             <p>
               Empowering businesses through technology, innovation, and secure
               solutions for a smarter future.
@@ -444,9 +444,9 @@ export function SiteFooter() {
           <span>Redsecure , All rights reserved.</span>
           <span>
             Designed By{" "}
-            <a href="/index.html">
+            <Link href="/index.html">
               RedSecure
-            </a>
+            </Link>
           </span>
         </div>
       </footer>
@@ -478,9 +478,9 @@ export function LegacyFooter() {
       <footer className="site-footer legacy-footer">
         <div className="shell footer-main legacy-footer-main">
           <div className="footer-brand-column">
-            <a className="legacy-footer-brand" href="/index.html">
+            <Link className="legacy-footer-brand" href="/index.html">
               High <b>Tech</b>
-            </a>
+            </Link>
             <p>{legacyText.description}</p>
           </div>
           <div className="footer-links">
@@ -519,9 +519,9 @@ export function LegacyFooter() {
           <span>Your Site Name , All right reserved.</span>
           <span>
             Designed By{" "}
-            <a href="/index.html">
+            <Link href="/index.html">
               RedSecure
-            </a>
+            </Link>
           </span>
         </div>
       </footer>
@@ -693,10 +693,10 @@ export function Legacy404Page() {
               We’re sorry, the page you have looked for does not exist in our
               website! Maybe go to our home page or try to use a search?
             </p>
-            <a className="primary-button" href="/index.html">
+            <Link className="primary-button" href="/index.html">
               Go Back To Home
               <ArrowRight aria-hidden="true" />
-            </a>
+            </Link>
           </Reveal>
         </div>
       </main>

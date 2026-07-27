@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
@@ -25,8 +26,8 @@ export function FirstVisitLoader() {
   useEffect(() => {
     try {
       if (window.localStorage.getItem(FIRST_VISIT_KEY)) {
-        setVisible(false);
-        return;
+        const hideTimer = window.setTimeout(() => setVisible(false), 0);
+        return () => window.clearTimeout(hideTimer);
       }
     } catch {
       // Storage can be unavailable in strict privacy modes; the loader still works.
@@ -189,7 +190,7 @@ export function SiteHeader({
 
       <header className={`site-header ${legacy ? "legacy-header" : ""}`}>
         <div className="shell nav-shell">
-          <a
+          <Link
             className={`brand ${legacy ? "legacy-brand" : ""}`}
             href="/index.html"
             aria-label={legacy ? "High Tech home" : "RedSecure home"}
@@ -206,7 +207,7 @@ export function SiteHeader({
                 <span className="brand-word">RedSecure</span>
               </>
             )}
-          </a>
+          </Link>
 
           <nav className="desktop-nav" aria-label="Primary navigation">
             {links.map(([label, href, key]) => (

@@ -552,7 +552,13 @@ img {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(6, 11, 20, 0.97) 0%, rgba(6, 11, 20, 0.9) 40%, rgba(6, 11, 20, 0.46) 72%, rgba(6, 11, 20, 0.72) 100%),
+    linear-gradient(
+      90deg,
+      rgba(6, 11, 20, 0.97) 0%,
+      rgba(6, 11, 20, 0.9) 40%,
+      rgba(6, 11, 20, 0.46) 72%,
+      rgba(6, 11, 20, 0.72) 100%
+    ),
     linear-gradient(0deg, #080d17 0%, transparent 35%);
 }
 
@@ -717,7 +723,11 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 28px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035)),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.13),
+      rgba(255, 255, 255, 0.035)
+    ),
     rgba(8, 14, 25, 0.7);
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(18px);
@@ -728,8 +738,7 @@ img {
 @keyframes dashboard-float {
   0%,
   100% {
-    transform: perspective(1200px) rotateY(-4deg) rotateX(1deg)
-      translateY(0);
+    transform: perspective(1200px) rotateY(-4deg) rotateX(1deg) translateY(0);
   }
   50% {
     transform: perspective(1200px) rotateY(-2deg) rotateX(0deg)
@@ -1479,8 +1488,7 @@ img {
   border-radius: var(--radius-md);
   color: var(--white);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent),
-    #0b121f;
+    linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent), #0b121f;
 }
 
 .contact-form label {
@@ -1555,7 +1563,11 @@ img {
   overflow: hidden;
   color: var(--white);
   background:
-    radial-gradient(circle at 75% 20%, rgba(176, 27, 36, 0.36), transparent 27%),
+    radial-gradient(
+      circle at 75% 20%,
+      rgba(176, 27, 36, 0.36),
+      transparent 27%
+    ),
     linear-gradient(120deg, #090f1a, #111a29);
   display: flex;
   align-items: center;
@@ -2769,7 +2781,9 @@ img {
   box-shadow: var(--shadow-red);
   font-size: 13px;
   font-weight: 700;
-  transition: transform 0.25s ease, background 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
 }
 
 .product-details-link svg {
@@ -2792,7 +2806,11 @@ img {
   overflow: hidden;
   color: var(--white);
   background:
-    radial-gradient(circle at 72% 40%, rgba(180, 26, 35, 0.26), transparent 31%),
+    radial-gradient(
+      circle at 72% 40%,
+      rgba(180, 26, 35, 0.26),
+      transparent 31%
+    ),
     linear-gradient(135deg, #070c15 0%, #0d1522 62%, #17090e 100%);
 }
 
@@ -2888,7 +2906,9 @@ img {
   background: var(--white);
   font-size: 13px;
   font-weight: 700;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .hrms-hero .hrms-secondary-button {
@@ -3140,11 +3160,16 @@ img {
 }
 
 @keyframes hrms-bars {
-  from { transform: scaleY(0); transform-origin: bottom; }
+  from {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
 
 @keyframes hrms-float {
-  50% { transform: translateY(-8px); }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .hrms-explorer {
@@ -3209,7 +3234,10 @@ img {
   cursor: pointer;
   font-size: 11px;
   font-weight: 650;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 .hrms-filter-row button:hover,
@@ -3270,7 +3298,9 @@ img {
   background: transparent;
   text-align: left;
   cursor: pointer;
-  transition: background 0.22s ease, color 0.22s ease;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease;
 }
 
 .hrms-plan-nav > button > span:first-child {
@@ -3458,8 +3488,11 @@ img {
   flex-direction: column;
   border: 1px solid rgba(9, 17, 31, 0.1);
   border-radius: 19px;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.65));
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.65)
+  );
   box-shadow: 0 12px 35px rgba(9, 17, 31, 0.045);
   transition:
     transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
@@ -3483,7 +3516,9 @@ img {
 .hr-feature-card:hover {
   z-index: 2;
   border-color: rgba(214, 47, 57, 0.4);
-  box-shadow: 0 24px 60px rgba(9, 17, 31, 0.11), 0 0 0 1px rgba(214, 47, 57, 0.08);
+  box-shadow:
+    0 24px 60px rgba(9, 17, 31, 0.11),
+    0 0 0 1px rgba(214, 47, 57, 0.08);
   transform: translateY(-7px);
 }
 
@@ -3899,7 +3934,11 @@ img {
   border-radius: 32px;
   color: var(--white);
   background:
-    radial-gradient(circle at 85% 20%, rgba(238, 81, 90, 0.26), transparent 28%),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(238, 81, 90, 0.26),
+      transparent 28%
+    ),
     linear-gradient(135deg, #7d0b11, #a8141c 50%, #59070b);
   box-shadow: var(--shadow-red);
   text-align: center;
