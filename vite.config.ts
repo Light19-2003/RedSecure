@@ -44,6 +44,11 @@ export default defineConfig(async () => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
+    build: {
+      // Version the public asset path so browsers cannot reuse a transiently
+      // cached 404 from an earlier deployment.
+      assetsDir: "assets-v3",
+    },
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
